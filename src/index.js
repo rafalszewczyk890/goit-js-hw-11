@@ -36,8 +36,9 @@ async function getPhoto() {
 }
 
 function renderPhotos(photos) {
-  let markup = photos.map(
-    photo => `<div class="photo-card">
+  let markup = photos
+    .map(
+      photo => `<div class="photo-card">
   <img src="${photo.webformatURL}" alt="${photo.tags}" loading="lazy" />
   <div class="info">
     <p class="info-item">
@@ -54,6 +55,7 @@ function renderPhotos(photos) {
     </p>
   </div>
 </div>`
-  );
+    )
+    .join('');
   gallery.innerHTML = markup;
 }
