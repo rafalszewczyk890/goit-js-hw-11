@@ -1,22 +1,36 @@
 import Notiflix from 'notiflix';
 import axios from 'axios';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const searchBox = document.querySelector('input');
 const submitButton = document.querySelector('button');
 const loadButton = document.querySelector('.load-more');
 const gallery = document.querySelector('.gallery');
 const userKey = '33215953-674c55a945dec9bfe68981b61';
-
 let page = 1;
+
+function scrollCards() {
+  const { height: cardHeight } = document
+    .querySelector('.gallery')
+    .firstElementChild.getBoundingClientRect();
+  window.scrollBy({
+    top: cardHeight * 2,
+    behavior: 'smooth',
+  });
+  console.log(cardHeight);
+}
 
 submitButton.addEventListener('click', async event => {
   event.preventDefault();
+  page = 1;
   try {
     const photos = await getPhoto();
     if (photos[0].length > 0) {
+      gallery.innerHTML = ' ';
       renderPhotos(photos[0]);
       loadButton.classList.remove('hidden');
       page += 1;
+      Notiflix.Notify.success(`Hooray! We found ${photos[1]} images.`);
     } else {
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
@@ -33,7 +47,7 @@ loadButton.addEventListener('click', async event => {
     const photos = await getPhoto();
     if (photos[0].length > 0) {
       renderPhotos(photos[0]);
-      Notiflix.Notify.success(`Hooray! We found ${photos[1]} images.`);
+      scrollCards();
       page += 1;
     } else {
       loadButton.classList.add('hidden');
