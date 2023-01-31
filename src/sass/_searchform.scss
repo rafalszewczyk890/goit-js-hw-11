@@ -1,25 +1,20 @@
 body {
-  background-color: grey;
+  background-color: rgba(128, 128, 128, 0.226);
 }
 
 input {
-  border-radius: 4px;
   height: 100%;
   padding: 10px;
 }
 
 button {
   font-size: x-large;
-  border-radius: 7px;
   color: white;
-  border: 4px solid white;
   margin-left: 10px;
-  background: radial-gradient(
-    circle,
-    rgba(0, 0, 0, 0.267) 0%,
-    rgb(0, 185, 15) 100%
-  );
+  background: #2260bf;
   transition: 250ms;
+  border: none;
+  box-shadow: 4px 8px 12px 0px rgba(66, 68, 90, 1);
 }
 
 button:hover {
@@ -38,7 +33,6 @@ button:hover {
 .thumbnail {
   width: 100%;
   height: 400px;
-  border-radius: 7px;
   max-height: 400px;
   max-width: 700px;
 }
@@ -47,10 +41,9 @@ button:hover {
   flex-basis: calc((100% - 30px) / 4);
   display: flex;
   flex-direction: column;
-  border: 3px solid grey;
+  border: none;
   padding: 5px;
-  background-color: antiquewhite;
-  border-radius: 7px;
+  background-color: #01a791;
   box-shadow: 4px 8px 12px 0px rgba(66, 68, 90, 1);
   transition: 250ms;
 }
@@ -60,13 +53,13 @@ button:hover {
 }
 
 .info {
-  background-color: blanchedalmond;
+  background-color: #a0b0b8;
   padding: 10px;
-  border-radius: 7px;
+
   display: flex;
   justify-content: space-evenly;
   gap: 10px;
-  border: 4px solid grey;
+  border: none;
   margin-top: 5px;
 }
 
@@ -80,15 +73,9 @@ button:hover {
 }
 
 .search-form {
-  background: linear-gradient(
-    90deg,
-    rgb(0, 0, 0) 0%,
-    rgb(0, 185, 15) 50%,
-    rgb(255, 255, 255) 100%
-  );
+  background: #2260bf50;
   padding: 10px;
-  border-radius: 4px;
-  border: 4px solid rgb(0, 0, 0);
+  border: none;
   display: flex;
   justify-content: center;
 }
@@ -97,10 +84,11 @@ button:hover {
   margin: 20px;
   height: 5vh;
   width: 10vh;
-  background: gradient(rgba(0, 0, 0, 0.185) 0%, rgb(0, 182, 30) 100%);
+  background: #2260bf;
   margin: 0 47%;
   margin-bottom: 30px;
   transition: 250ms;
+  box-shadow: 4px 8px 12px 0px rgba(66, 68, 90, 1);
 }
 
 .load-more:hover {

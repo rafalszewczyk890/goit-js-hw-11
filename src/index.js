@@ -58,7 +58,7 @@ function renderPhotos(photos) {
   gallery.insertAdjacentHTML('beforeend', markup);
 }
 
-submitButton.addEventListener('click', async event => {
+async function onSubmit(event) {
   event.preventDefault();
   page = 1;
   try {
@@ -81,9 +81,9 @@ submitButton.addEventListener('click', async event => {
   } catch (error) {
     console.log(error);
   }
-});
+}
 
-loadButton.addEventListener('click', async event => {
+async function onLoad(event) {
   event.preventDefault();
   try {
     const photos = await getPhoto();
@@ -100,4 +100,8 @@ loadButton.addEventListener('click', async event => {
   } catch (error) {
     console.log(error);
   }
-});
+}
+
+submitButton.addEventListener('click', onSubmit);
+
+loadButton.addEventListener('click', onLoad);
