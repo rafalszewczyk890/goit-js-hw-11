@@ -21,6 +21,43 @@ function scrollCards() {
   lightbox.refresh();
 }
 
+async function getPhoto() {
+  const searchedTerm = searchBox.value;
+  try {
+    const response = await axios.get(
+      `https://pixabay.com/api/?key=${userKey}&q=${searchedTerm}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${page}`
+    );
+    return [response.data.hits, response.data.totalHits];
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function renderPhotos(photos) {
+  let markup = photos
+    .map(
+      photo => `<div class="photo-card">
+  <a href="${photo.largeImageURL}"> <img class="thumbnail" src="${photo.webformatURL}" alt="${photo.tags}" loading="lazy" /> </a>
+  <div class="info">
+    <p class="info-item">
+      <b>Likes: ${photo.likes}</b>
+    </p>
+    <p class="info-item">
+      <b>Views: ${photo.views}</b>
+    </p>
+    <p class="info-item">
+      <b>Comments: ${photo.comments}</b>
+    </p>
+    <p class="info-item">
+      <b>Downloads: ${photo.downloads}</b>
+    </p>
+  </div>
+</div>`
+    )
+    .join('');
+  gallery.insertAdjacentHTML('beforeend', markup);
+}
+
 submitButton.addEventListener('click', async event => {
   event.preventDefault();
   page = 1;
@@ -64,40 +101,3 @@ loadButton.addEventListener('click', async event => {
     console.log(error);
   }
 });
-
-async function getPhoto() {
-  const searchedTerm = searchBox.value;
-  try {
-    const response = await axios.get(
-      `https://pixabay.com/api/?key=${userKey}&q=${searchedTerm}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${page}`
-    );
-    return [response.data.hits, response.data.totalHits];
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-function renderPhotos(photos) {
-  let markup = photos
-    .map(
-      photo => `<div class="photo-card">
-  <a href="${photo.largeImageURL}"> <img class="thumbnail" src="${photo.webformatURL}" alt="${photo.tags}" loading="lazy" /> </a>
-  <div class="info">
-    <p class="info-item">
-      <b>Likes: ${photo.likes}</b>
-    </p>
-    <p class="info-item">
-      <b>Views: ${photo.views}</b>
-    </p>
-    <p class="info-item">
-      <b>Comments: ${photo.comments}</b>
-    </p>
-    <p class="info-item">
-      <b>Downloads: ${photo.downloads}</b>
-    </p>
-  </div>
-</div>`
-    )
-    .join('');
-  gallery.insertAdjacentHTML('beforeend', markup);
-}
