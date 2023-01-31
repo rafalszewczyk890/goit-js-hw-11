@@ -79,6 +79,19 @@ button:hover {
   border: none;
   display: flex;
   justify-content: center;
+  position: relative;
+}
+
+.search-form::after {
+  left: 40px;
+  position: absolute;
+  content: 'GoIT photo finder!';
+
+  font-size: 40px;
+  background: -webkit-linear-gradient(rgb(119, 115, 209), rgb(143, 0, 0));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: 500ms;
 }
 
 .load-more {
