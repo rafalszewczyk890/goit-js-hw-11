@@ -1,5 +1,6 @@
 import Notiflix from 'notiflix';
 import axios from 'axios';
+import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const searchBox = document.querySelector('input');
@@ -8,16 +9,16 @@ const loadButton = document.querySelector('.load-more');
 const gallery = document.querySelector('.gallery');
 const userKey = '33215953-674c55a945dec9bfe68981b61';
 let page = 1;
+let lightbox;
 
 function scrollCards() {
-  const { height: cardHeight } = document
-    .querySelector('.gallery')
-    .firstElementChild.getBoundingClientRect();
+  const { height: cardHeight } =
+    gallery.firstElementChild.getBoundingClientRect();
   window.scrollBy({
     top: cardHeight * 2,
     behavior: 'smooth',
   });
-  console.log(cardHeight);
+  lightbox.refresh();
 }
 
 submitButton.addEventListener('click', async event => {
@@ -31,6 +32,10 @@ submitButton.addEventListener('click', async event => {
       loadButton.classList.remove('hidden');
       page += 1;
       Notiflix.Notify.success(`Hooray! We found ${photos[1]} images.`);
+      lightbox = new SimpleLightbox('.gallery .photo-card a', {
+        captionsData: 'alt',
+        captionDelay: 250,
+      });
     } else {
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
@@ -76,7 +81,7 @@ function renderPhotos(photos) {
   let markup = photos
     .map(
       photo => `<div class="photo-card">
-  <img src="${photo.webformatURL}" alt="${photo.tags}" loading="lazy" />
+  <a href="${photo.largeImageURL}"> <img class="thumbnail" src="${photo.webformatURL}" alt="${photo.tags}" loading="lazy" /> </a>
   <div class="info">
     <p class="info-item">
       <b>Likes: ${photo.likes}</b>
