@@ -83,15 +83,15 @@ async function onSubmit(event) {
   }
 }
 
-async function onLoad(event) {
-  event.preventDefault();
+async function onLoad() {
   try {
     const photos = await getPhoto();
     if (photos[0].length > 0) {
       renderPhotos(photos[0]);
       scrollCards();
       page += 1;
-    } else {
+    }
+    if (photos[0].length < 40) {
       loadButton.classList.add('hidden');
       Notiflix.Notify.failure(
         `We're sorry, but you've reached the end of search results.`
