@@ -36,7 +36,7 @@ async function getPhoto() {
 function renderPhotos(photos) {
   let markup = photos
     .map(
-      photo => `<div class="photo-card">
+      photo => `<div class="photo-card fade-in-image">
   <a href="${photo.largeImageURL}"> <img class="thumbnail" src="${photo.webformatURL}" alt="${photo.tags}" loading="lazy" /> </a>
   <div class="info">
     <p class="info-item">

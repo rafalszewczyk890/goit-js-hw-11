@@ -1,5 +1,6 @@
 body {
   background-color: rgba(128, 128, 128, 0.226);
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 input {
@@ -14,12 +15,12 @@ button {
   background: #2260bf;
   transition: 250ms;
   border: none;
-  box-shadow: 4px 8px 12px 0px rgba(66, 68, 90, 1);
 }
 
 button:hover {
   cursor: pointer;
   transform: scale(1.1);
+  box-shadow: 4px 8px 4px 0px rgb(0, 183, 255);
 }
 
 .gallery {
@@ -43,7 +44,7 @@ button:hover {
   flex-direction: column;
   border: none;
   padding: 5px;
-  background-color: #01a791;
+  background: linear-gradient(skyblue 90%, white);
   box-shadow: 4px 8px 12px 0px rgba(66, 68, 90, 1);
   transition: 250ms;
 }
@@ -94,4 +95,20 @@ button:hover {
 .load-more:hover {
   transform: scale(1.1);
   cursor: pointer;
+  box-shadow: 4px 8px 4px 0px rgb(0, 183, 255);
+}
+
+.fade-in-image {
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    scale: 0.8;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
 }
